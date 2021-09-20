@@ -12,3 +12,15 @@ makeVector <- function(x = numeric()){
       setmean = setmean,
       getmean = getmean)
 }
+
+VectorSolve <- function(x,...) {
+  f <- x$getmean()
+  if(!is.null(f)){
+    message("getting cached data")
+    return(f)
+  }
+  data <-x$get()
+  f <- solve(data,...)
+  x$setmean(f)
+  f
+}
